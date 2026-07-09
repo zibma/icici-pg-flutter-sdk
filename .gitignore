@@ -1,0 +1,81 @@
+# Flutter/Dart
+.dart_tool/
+.pub-cache/
+.packages
+.pub/
+build/
+*.iml
+*.lock
+.flutter-plugins
+.flutter-plugins-dependencies
+
+# IDE
+.idea/
+.vscode/
+*.swp
+*.swo
+.DS_Store
+
+# macOS
+.DS_Store*
+*.swp
+*.lock
+
+# Android
+android/.gradle/
+android/local.properties
+android/key.properties
+android/app/*.jks
+android/app/*.keystore
+android/captures/
+*.apk
+*.aab
+*.hprof
+
+# iOS
+ios/Pods/
+ios/.symlinks/
+ios/Flutter/Flutter.framework
+ios/Flutter/Flutter.podspec
+ios/*.xcworkspace
+ios/Podfile.lock
+
+# Windows
+windows/flutter/ephemeral/
+windows/FlutterGeneratedComponents/
+windows/Runner/GeneratedFiles/
+
+# Linux
+linux/flutter/ephemeral/
+linux/FlutterGeneratedComponents/
+
+# Web
+web/favicon.png
+web/icons/
+
+# Testing
+coverage/
+test_reports/
+
+# Example app
+example/.dart_tool/
+example/build/
+example/.packages
+example/.pub/
+example/.flutter-plugins
+example/.flutter-plugins-dependencies
+example/android/.gradle/
+example/android/local.properties
+example/ios/Pods/
+example/ios/.symlinks/
+example/ios/Podfile.lock
+example/ios/Flutter/Flutter.framework
+example/ios/Flutter/Flutter.podspec
+
+# Miscellaneous
+*.log
+*.tmp
+*.bak
+*.swp
+*.swo
+*~

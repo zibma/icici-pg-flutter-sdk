@@ -1,0 +1,115 @@
+group = "com.payphi.fluttersdkplugin"
+version = "1.0-SNAPSHOT"
+
+buildscript {
+    ext.kotlin_version = "2.1.0"
+    
+    repositories {
+        google()
+        mavenCentral()
+        flatDir {
+            dirs 'libs', '../example/android/customer-sdk'
+        }
+    }
+    
+    dependencies {
+        classpath("com.android.tools.build:gradle:8.7.3")
+        classpath("org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version")
+    }
+}
+
+apply plugin: "com.android.library"
+apply plugin: "kotlin-android"
+
+android {
+    namespace = "com.payphi.fluttersdkplugin"
+
+    compileSdk = 35
+
+    compileOptions {
+        sourceCompatibility = JavaVersion.VERSION_11
+        targetCompatibility = JavaVersion.VERSION_11
+    }
+
+    kotlinOptions {
+        jvmTarget = JavaVersion.VERSION_11
+    }
+
+    sourceSets {
+        main.java.srcDirs += "src/main/kotlin"
+        test.java.srcDirs += "src/test/kotlin"
+    }
+
+    defaultConfig {
+        minSdk = 21
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+    }
+    
+    // This is the basic gradle plugin configuration
+    // It's used by the Flutter tooling to register the plugin
+    // The plugin class is specified in the `pluginClass` property
+    // The plugin implementation is in the `implementationClass` property
+    // The plugin's dependencies are specified in the `dependencies` block
+
+    // Plugin configuration for the Flutter tooling
+    gradle.ext.pluginName = 'flutter_payphi_sdk'
+    gradle.ext.pluginClass = 'com.payphi.fluttersdkplugin.FlutterPayPhiSdkPlugin'
+    gradle.ext.pluginImplementation = 'com.payphi.fluttersdkplugin.FlutterPayPhiSdkPlugin'
+
+    dependencies {
+       repositories {
+            flatDir {
+                dirs "libs"
+            }
+        }
+
+        
+              implementation(name: "customersdk", ext: "aar") // Correct filename
+
+        
+        implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
+        implementation 'androidx.appcompat:appcompat:1.6.1'
+        implementation 'androidx.core:core-ktx:1.12.0'
+        implementation 'androidx.appcompat:appcompat:1.6.1'
+        implementation 'androidx.constraintlayout:constraintlayout:2.1.4'
+        implementation 'com.google.android.material:material:1.9.0'
+        implementation 'androidx.lifecycle:lifecycle-extensions:2.2.0'
+        // ViewModel
+        implementation 'androidx.lifecycle:lifecycle-viewmodel-ktx:2.5.1'
+        
+        // Testing dependencies
+        testImplementation "org.jetbrains.kotlin:kotlin-test"
+        testImplementation 'org.mockito:mockito-core:5.0.0'
+        testImplementation 'junit:junit:4.13.2'
+        androidTestImplementation ("androidx.test.ext:junit:1.1.3")
+        androidTestImplementation ("androidx.test.espresso:espresso-core:3.4.0")
+        // Using local AAR file from libs folder
+        implementation ("com.github.bumptech.glide:glide:4.11.0")
+        implementation ("com.google.code.gson:gson:2.8.9")
+        //dependencies for retrofit
+        implementation ("com.squareup.retrofit2:retrofit:2.9.0")
+        implementation ("com.squareup.retrofit2:converter-gson:2.9.0")
+        implementation ("com.squareup.retrofit2:adapter-rxjava:2.7.1")
+        implementation ("com.squareup.okhttp3:logging-interceptor:4.8.0")
+        //okhttp
+        implementation ("com.squareup.okhttp3:okhttp:4.9.0")
+        // coroutines
+        implementation ("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.3.3")
+        implementation ("org.jetbrains.kotlinx:kotlinx-coroutines-android:1.6.1")
+        implementation ("androidx.multidex:multidex:2.0.1")
+        implementation ("com.github.bumptech.glide:glide:4.15.1")
+        annotationProcessor ("com.github.bumptech.glide:compiler:4.15.1")
+    }
+
+    testOptions {
+        unitTests.all {
+            useJUnitPlatform()
+
+            testLogging {
+               events "passed", "skipped", "failed", "standardOut", "standardError"
+               outputs.upToDateWhen {false}
+               showStandardStreams = true
+            }
+        }
+    }
+}

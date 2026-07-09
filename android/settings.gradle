@@ -1,0 +1,35 @@
+pluginManagement {
+    repositories {
+        gradlePluginPortal()
+        google()
+        mavenCentral()
+    }
+
+    resolutionStrategy {
+        eachPlugin {
+            if (requested.id.namespace == "com.android" || requested.id.name == "kotlin-android") {
+                useModule("com.android.tools.build:gradle:8.7.3")
+            }
+        }
+    }
+}
+
+dependencyResolutionManagement {
+    repositoriesMode.set(RepositoriesMode.PREFER_SETTINGS)
+
+    repositories {
+        google()
+        mavenCentral()
+
+        // Allow Gradle to find AAR inside the plugin folder
+        flatDir {
+            dirs "../Customer-Flutter-plugin/android/libs"
+        }
+    }
+}
+
+rootProject.name = "flutterplugindemo"
+
+include ":app"
+include ":flutterplugindemo" // If plugin exists
+// ❌ REMOVE customer-sdk include, because it's NOT a module

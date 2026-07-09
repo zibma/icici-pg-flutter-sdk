@@ -1,0 +1,6 @@
+framework module customersdk {
+  umbrella header "customersdk.h"
+  export *
+
+  module * { export * }
+}

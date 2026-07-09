@@ -1,0 +1,539 @@
+// swift-interface-format-version: 1.0
+// swift-compiler-version: Apple Swift version 6.2.3 effective-5.10 (swiftlang-6.2.3.3.21 clang-1700.6.3.2)
+// swift-module-flags: -target arm64-apple-ios17 -enable-objc-interop -enable-library-evolution -swift-version 5 -enforce-exclusivity=checked -Onone -enable-experimental-feature DebugDescriptionMacro -enable-bare-slash-regex -module-name customersdk
+// swift-module-flags-ignorable:  -formal-cxx-interoperability-mode=off -interface-compiler-version 6.2.3
+import Combine
+import CommonCrypto
+import CryptoKit
+import DeveloperToolsSupport
+import Foundation
+import Security
+import Swift
+import SwiftUI
+import SystemConfiguration
+import UIKit
+import WebKit
+import _Concurrency
+import _StringProcessing
+import _SwiftConcurrencyShims
+@_exported import customersdk
+public struct UPI : Swift.Codable {
+  public let upiId: Swift.String
+  public let bankName: Swift.String
+  public let accountHolder: Swift.String
+  public func encode(to encoder: any Swift.Encoder) throws
+  public init(from decoder: any Swift.Decoder) throws
+}
+public struct ServiceChargeRequestBody : Swift.Codable {
+  public func encode(to encoder: any Swift.Encoder) throws
+  public init(from decoder: any Swift.Decoder) throws
+}
+@objc @_inheritsConvenienceInitializers @_Concurrency.MainActor @preconcurrency open class BindingViewController : customersdk.BaseViewController {
+  @_Concurrency.MainActor @preconcurrency @objc override dynamic public func viewDidLoad()
+  @_Concurrency.MainActor @preconcurrency open func getLayoutView() -> UIKit.UIView
+  #if compiler(>=5.3) && $NonescapableTypes
+  @_Concurrency.MainActor @preconcurrency @objc override dynamic public init(nibName nibNameOrNil: Swift.String?, bundle nibBundleOrNil: Foundation.Bundle?)
+  #endif
+  #if compiler(>=5.3) && $NonescapableTypes
+  @_Concurrency.MainActor @preconcurrency @objc required dynamic public init?(coder: Foundation.NSCoder)
+  #endif
+  @objc deinit
+}
+public struct UpiResponse : Swift.Codable {
+  public let respHeader: customersdk.UpiRespHeader?
+  public let respBody: customersdk.UpiRespBody?
+  public let status: Swift.String?
+  public func encode(to encoder: any Swift.Encoder) throws
+  public init(from decoder: any Swift.Decoder) throws
+}
+public struct UpiRespHeader : Swift.Codable {
+  public let returnCode: Swift.Int?
+  public let desc: Swift.String?
+  public let upiRespDesc: Swift.String?
+  public func encode(to encoder: any Swift.Encoder) throws
+  public init(from decoder: any Swift.Decoder) throws
+}
+public struct UpiRespBody : Swift.Codable {
+  public let merchantID: Swift.String?
+  public let aggregatorID: Swift.String?
+  public let merchantRefNo: Swift.String?
+  public let bharatQR: Swift.String?
+  public let upiQR: Swift.String?
+  public let expiry: Swift.String?
+  public let serviceChargeUPI: Swift.String?
+  public let serviceChargeBharatQR: Swift.String?
+  public func encode(to encoder: any Swift.Encoder) throws
+  public init(from decoder: any Swift.Decoder) throws
+}
+@_hasMissingDesignatedInitializers public class QrCodeRepository {
+  public static let shared: customersdk.QrCodeRepository
+  #if compiler(>=5.3) && $NonescapableTypes
+  public func getServiceCharge(url: Swift.String, merchantID: Swift.String, amount: Swift.String, merchantTxnNo: Swift.String, paymentMode: Swift.String, paymentOptionCodes: Swift.String, secureTokenHash: Swift.String, currencyCode: Swift.String, secureHash: Swift.String, addlParam1: Swift.String, addlParam2: Swift.String, invoiceList: Swift.String, aggregatorID: Swift.String, completion: @escaping (Swift.Result<customersdk.ServiceChargeResponse, any Swift.Error>) -> Swift.Void)
+  #endif
+  #if compiler(>=5.3) && $NonescapableTypes
+  public func checkTransactionStatus(url: Swift.String, amount: Swift.String, merchantTxnNo: Swift.String, transactionType: Swift.String, originalTxnNo: Swift.String, merchantID: Swift.String, completion: @escaping (Swift.Result<Foundation.Data, any Swift.Error>) -> Swift.Void)
+  #endif
+  #if compiler(>=5.3) && $NonescapableTypes
+  public func vpaPayment(url: Swift.String, amount: Swift.String, currencyCode: Swift.String, merchantID: Swift.String, merchantTxnNo: Swift.String, invoiceNo: Swift.String, allowDisablePaymentMode: Swift.String, secureHash: Swift.String, paymentMode: Swift.String, payType: Swift.String, customerUPIAlias: Swift.String, customerID: Swift.String, transactionType: Swift.String, secureTokenHash: Swift.String, customerEmailID: Swift.String, returnURL: Swift.String, addlParam1: Swift.String, addlParam2: Swift.String, completion: @escaping (Swift.Result<customersdk.VpaPaymentResponse, any Swift.Error>) -> Swift.Void)
+  #endif
+  @objc deinit
+}
+public protocol AppInitializationListener {
+  #if compiler(>=5.3) && $NonescapableTypes
+  func onSuccess(status: Swift.String?)
+  #endif
+  #if compiler(>=5.3) && $NonescapableTypes
+  func onFailure(errorCode: Swift.String?)
+  #endif
+}
+@_hasMissingDesignatedInitializers public class Application {
+  public static let shared: customersdk.Application
+  public func setAppInfo(mid: Swift.String, appId: Swift.String, listener: any customersdk.AppInitializationListener)
+  public func setEnv(type: Swift.String)
+  public func setMerchantName(name: Swift.String)
+  @objc deinit
+}
+@objc @_inheritsConvenienceInitializers @_Concurrency.MainActor @preconcurrency open class BaseViewController : UIKit.UIViewController {
+  @_Concurrency.MainActor @preconcurrency @objc override dynamic open func viewDidLoad()
+  @_Concurrency.MainActor @preconcurrency open func setupUI()
+  #if compiler(>=5.3) && $NonescapableTypes
+  @_Concurrency.MainActor @preconcurrency public func launchViewController(_ viewController: UIKit.UIViewController, with bundle: [Swift.String : Any]? = nil)
+  #endif
+  @_Concurrency.MainActor @preconcurrency public func showCancelConfirmation()
+  @_Concurrency.MainActor @preconcurrency public func checkForConnection()
+  @_Concurrency.MainActor @preconcurrency public func showPayDialog()
+  @_Concurrency.MainActor @preconcurrency public func hidePayDialog()
+  #if compiler(>=5.3) && $NonescapableTypes
+  @_Concurrency.MainActor @preconcurrency @objc override dynamic public init(nibName nibNameOrNil: Swift.String?, bundle nibBundleOrNil: Foundation.Bundle?)
+  #endif
+  #if compiler(>=5.3) && $NonescapableTypes
+  @_Concurrency.MainActor @preconcurrency @objc required dynamic public init?(coder: Foundation.NSCoder)
+  #endif
+  @objc deinit
+}
+public struct UpiModel {
+  public let name: Swift.String?
+  public let scheme: Swift.String?
+  public var icon: UIKit.UIImage?
+  #if compiler(>=5.3) && $NonescapableTypes
+  public init(name: Swift.String? = nil, scheme: Swift.String? = nil, icon: UIKit.UIImage? = nil)
+  #endif
+  public func loadImage(from urlString: Swift.String, completion: @escaping (customersdk.UpiModel) -> Swift.Void)
+}
+public enum Message : Swift.Int {
+  case VERIFYERR10
+  case VERIFYERR11
+  case VERIFYERR12
+  case VERIFYERR13
+  case VERIFYERR14
+  case VERIFYERR15
+  case VERIFYERR16
+  case VERIFYERR17
+  case VERIFYERR18
+  public func getMessage() -> Swift.Int
+  #if compiler(>=5.3) && $NonescapableTypes
+  public init?(rawValue: Swift.Int)
+  #endif
+  public typealias RawValue = Swift.Int
+  public var rawValue: Swift.Int {
+    get
+  }
+}
+extension Foundation.NSNotification.Name {
+  public static let upiCallbackReceived: Foundation.Notification.Name
+}
+public struct AppConst {
+  public static let MID: Swift.String
+  public static let MERCHANT_ID: Swift.String
+  public static let SECURE_TOKEN: Swift.String
+  public static let AGGREGATOR_ID: Swift.String
+  public static let INVOICE_NO: Swift.String
+  public static let CUSTOMER_ID: Swift.String
+  public static let CURRENCY: Swift.String
+  public static let EMAIL_ID: Swift.String
+  public static let MOBILE_NO: Swift.String
+  public static let ADDL_PARAM_1: Swift.String
+  public static let ADDL_PARAM_2: Swift.String
+  public static let INVOICE_LIST: Swift.String
+  public static let MERCHANT_TXN_NO: Swift.String
+  public static let AMOUNT: Swift.String
+  public static let TYPE: Swift.String
+  public static let BUNDLE: Swift.String
+  public static let VPA_REQUEST: Swift.String
+  public static let MERCHANT_REF_NO: Swift.String
+  public static let GET_SERCHARGE_REQ: Swift.String
+  public static let TRANSACTION_STATUS: Swift.String
+  public static let JWT_TOKEN_NEW: Swift.String
+  public static let SDK_USER_ID: Swift.String
+  public static let USE_AGGREGATOR_MID: Swift.String
+  public static let UPIREQUEST: Swift.String
+  public static let APPID: Swift.String
+  public static let PAYMENTOPTIONS: Swift.String
+  public static let FORMURL: Swift.String
+}
+@objc @_inheritsConvenienceInitializers @_hasMissingDesignatedInitializers @_Concurrency.MainActor @preconcurrency public class EmojiFilter : ObjectiveC.NSObject, UIKit.UITextFieldDelegate {
+  @_Concurrency.MainActor @preconcurrency public static let shared: customersdk.EmojiFilter
+  @_Concurrency.MainActor @preconcurrency @objc public func textField(_ textField: UIKit.UITextField, shouldChangeCharactersIn range: Foundation.NSRange, replacementString string: Swift.String) -> Swift.Bool
+  @objc deinit
+}
+public protocol BaseTableViewCellDelegate : AnyObject {
+  func onCellClicked(at index: Swift.Int)
+}
+@_inheritsConvenienceInitializers @_Concurrency.MainActor @preconcurrency open class BaseTableViewCell<T> : UIKit.UITableViewCell {
+  @_Concurrency.MainActor @preconcurrency weak public var delegate: (any customersdk.BaseTableViewCellDelegate)?
+  @_Concurrency.MainActor @preconcurrency public var index: Swift.Int
+  #if compiler(>=5.3) && $NonescapableTypes
+  @_Concurrency.MainActor @preconcurrency @objc override dynamic public init(style: UIKit.UITableViewCell.CellStyle, reuseIdentifier: Swift.String?)
+  #endif
+  #if compiler(>=5.3) && $NonescapableTypes
+  @_Concurrency.MainActor @preconcurrency @objc required dynamic public init?(coder: Foundation.NSCoder)
+  #endif
+  @_Concurrency.MainActor @preconcurrency open func configure(with item: T, at index: Swift.Int)
+  @objc deinit
+}
+public struct PaymentOptionDesc : Swift.Codable {
+  public let UPI: customersdk.UPI?
+  public func encode(to encoder: any Swift.Encoder) throws
+  public init(from decoder: any Swift.Decoder) throws
+}
+public struct RespBody : Swift.Codable {
+  public let paymentOption: [Swift.String]?
+  public let disabledPaymentOptions: [customersdk.AnyCodable]?
+  public let paymentOptionDesc: customersdk.PaymentOptionDesc?
+  public let supportedMposOptions: Swift.String?
+  public func encode(to encoder: any Swift.Encoder) throws
+  public init(from decoder: any Swift.Decoder) throws
+}
+public struct AnyCodable : Swift.Codable {
+  public let value: Any
+  #if compiler(>=5.3) && $NonescapableTypes
+  public init<T>(_ value: T?)
+  #endif
+  public init(from decoder: any Swift.Decoder) throws
+  public func encode(to encoder: any Swift.Encoder) throws
+}
+@_hasMissingDesignatedInitializers public class Prefs {
+  public static let shared: customersdk.Prefs
+  @objc deinit
+}
+@_hasMissingDesignatedInitializers public class CustomTypefaceSpan {
+  public static func applyCustomFont(to text: Swift.String, with font: UIKit.UIFont) -> Foundation.NSAttributedString
+  public static func applyCustomFontWithStyle(to text: Swift.String, with font: UIKit.UIFont, isBold: Swift.Bool = false, isItalic: Swift.Bool = false) -> Foundation.NSAttributedString
+  @objc deinit
+}
+public struct LoginResponse : Swift.Codable {
+  public let respHeader: customersdk.ResHeader?
+  public let respBody: customersdk.ResBody?
+  public func encode(to encoder: any Swift.Encoder) throws
+  public init(from decoder: any Swift.Decoder) throws
+}
+public struct ResHeader : Swift.Codable {
+  public let responseCode: Swift.Int?
+  public let description: Swift.String?
+  public func encode(to encoder: any Swift.Encoder) throws
+  public init(from decoder: any Swift.Decoder) throws
+}
+public struct ResBody : Swift.Codable {
+  public let userName: Swift.String?
+  public let merchantName: Swift.String?
+  public let merchantID: Swift.String?
+  public let userID: Swift.String?
+  public let mobileNo: Swift.Int64?
+  public let additionalInfo: customersdk.AdditionalInfo?
+  public func encode(to encoder: any Swift.Encoder) throws
+  public init(from decoder: any Swift.Decoder) throws
+}
+public struct AdditionalInfo : Swift.Codable {
+  public let merAppVersionID: Swift.String?
+  public let merAppMinVersionID: Swift.String?
+  public let aadhaarCertificateID: Swift.String?
+  public let bankIINLastUpdatedAt: Swift.String?
+  public func encode(to encoder: any Swift.Encoder) throws
+  public init(from decoder: any Swift.Decoder) throws
+}
+@_hasMissingDesignatedInitializers public class PayPhiSdk {
+  public static let DIALOG: Swift.String
+  public static var paymentListener: (any customersdk.PayPhiSdk.IAppPaymentResponseListenerEx)?
+  public static var sdkMap: [Swift.Int : Swift.String]
+  public static func handleCallback(url: Foundation.URL)
+  public protocol IAppPaymentResponseListener {
+    #if compiler(>=5.3) && $NonescapableTypes
+    func onPaymentResponse(resultCode: Swift.Int, data: [Swift.String : Any]?)
+    #endif
+  }
+  public protocol IAppPaymentResponseListenerEx {
+    #if compiler(>=5.3) && $NonescapableTypes
+    func onPaymentResponse(resultCode: Swift.Int, data: [Swift.String : Any]?, additionalInfo: [Swift.String : Swift.String]?)
+    #endif
+    #if compiler(>=5.3) && $NonescapableTypes
+    func onPaymentResponse1(resultCode: Swift.Int, data: [Swift.String : Any]?)
+    #endif
+  }
+  public protocol IAppMessageListener {
+    #if compiler(>=5.3) && $NonescapableTypes
+    func onMessageRequest(resultCode: Swift.Int) -> Swift.String?
+    #endif
+  }
+  public protocol IAppInitializationListener {
+    #if compiler(>=5.3) && $NonescapableTypes
+    func onSuccess(status: Swift.String?)
+    #endif
+    #if compiler(>=5.3) && $NonescapableTypes
+    func onFailure(errorCode: Swift.String?)
+    #endif
+  }
+  public static func makePayment(context: UIKit.UIViewController, paymentData: [Swift.String : Any], display: Swift.String, listenerEx: any customersdk.PayPhiSdk.IAppPaymentResponseListenerEx)
+  #if compiler(>=5.3) && $NonescapableTypes
+  public static func onPaymentResponse(requestCode: Swift.Int, resultCode: Swift.Int, data: [Swift.String : Any]?, additionalInfo: [Swift.String : Swift.String]? = nil)
+  #endif
+  #if compiler(>=5.3) && $NonescapableTypes
+  public static func onPaymentResponse(requestCode: Swift.Int, resultCode: Swift.Int, data: [Swift.String : Any]?)
+  #endif
+  #if compiler(>=5.3) && $NonescapableTypes
+  public static func onMessageRequest(resultCode: Swift.Int) -> Swift.String?
+  #endif
+  public static func getMessage() -> [Swift.Int : Swift.String]
+  public static func setLocalizedMessageMap(localizedMap: [Swift.Int : Swift.String])
+  public static func setMerchantName(context: UIKit.UIViewController, merchantName: Swift.String)
+  @objc deinit
+}
+@_hasMissingDesignatedInitializers public class APIClient {
+  public static let shared: customersdk.APIClient
+  #if compiler(>=5.3) && $NonescapableTypes
+  public func postFormRequest<T>(url: Foundation.URL, parameters: [Swift.String : Swift.String], completion: @escaping (Swift.Result<T, any Swift.Error>) -> Swift.Void) where T : Swift.Decodable, T : Swift.Encodable
+  #endif
+  @objc deinit
+}
+public struct PaymentOptionResponse : Swift.Codable {
+  public let respHeader: customersdk.PayRespHeader?
+  public let respBody: customersdk.PayRespBody?
+  public func encode(to encoder: any Swift.Encoder) throws
+  public init(from decoder: any Swift.Decoder) throws
+}
+public struct PayRespHeader : Swift.Codable {
+  public let responseCode: Swift.Int?
+  public let description: Swift.String?
+  public func encode(to encoder: any Swift.Encoder) throws
+  public init(from decoder: any Swift.Decoder) throws
+}
+public struct PaymentOptDesc : Swift.Codable {
+  public func encode(to encoder: any Swift.Encoder) throws
+  public init(from decoder: any Swift.Decoder) throws
+}
+public struct PayRespBody : Swift.Codable {
+  public let supportedMposOptions: Swift.String?
+  public let PaymentOption: [Swift.String]?
+  public let paymentOptionDesc: customersdk.PaymentOptDesc?
+  public func encode(to encoder: any Swift.Encoder) throws
+  public init(from decoder: any Swift.Decoder) throws
+}
+@_hasMissingDesignatedInitializers public class ApiServices {
+  public static let shared: customersdk.ApiServices
+  #if compiler(>=5.3) && $NonescapableTypes
+  public func login(requestBody: [Swift.String : Any], completion: @escaping (Swift.Result<customersdk.LoginResponse, any Swift.Error>) -> Swift.Void)
+  #endif
+  #if compiler(>=5.3) && $NonescapableTypes
+  public func getPaymentOptions(requestBody: [Swift.String : Any], completion: @escaping (Swift.Result<customersdk.PaymentOptionResponse, any Swift.Error>) -> Swift.Void)
+  #endif
+  #if compiler(>=5.3) && $NonescapableTypes
+  public func vpaResponse(url: Swift.String, params: [Swift.String : Swift.String], completion: @escaping (Swift.Result<customersdk.VpaPaymentResponse, any Swift.Error>) -> Swift.Void)
+  #endif
+  #if compiler(>=5.3) && $NonescapableTypes
+  public func checkTransactionStatus(url: Swift.String, params: [Swift.String : Swift.String], completion: @escaping (Swift.Result<Foundation.Data, any Swift.Error>) -> Swift.Void)
+  #endif
+  #if compiler(>=5.3) && $NonescapableTypes
+  public func generateQr(url: Swift.String, params: [Swift.String : Swift.String], completion: @escaping (Swift.Result<customersdk.UpiResponse, any Swift.Error>) -> Swift.Void)
+  #endif
+  #if compiler(>=5.3) && $NonescapableTypes
+  public func getServiceCharge(url: Swift.String, params: [Swift.String : Swift.String], completion: @escaping (Swift.Result<customersdk.ServiceChargeResponse, any Swift.Error>) -> Swift.Void)
+  #endif
+  @objc deinit
+}
+public struct VpaRequest : Swift.Codable {
+  public func encode(to encoder: any Swift.Encoder) throws
+  public init(from decoder: any Swift.Decoder) throws
+}
+@objc public class BundleData : ObjectiveC.NSObject, Swift.Codable, Foundation.NSCoding {
+  public var merchantID: Swift.String
+  public var amount: Swift.String
+  public var currencyCode: Swift.String
+  public var merchantTxnNo: Swift.String
+  public var allowDisablePaymentMode: Swift.String
+  public var customerEmailID: Swift.String
+  public var payType: Swift.String
+  public var invoiceNo: Swift.String
+  public var secureTokenHash: Swift.String
+  public var aggregatorID: Swift.String
+  public var customerID: Swift.String
+  public var customerUPIAlias: Swift.String
+  public init(merchantID: Swift.String = "", amount: Swift.String = "", currencyCode: Swift.String = "", merchantTxnNo: Swift.String = "", allowDisablePaymentMode: Swift.String = "", customerEmailID: Swift.String = "", payType: Swift.String = "", invoiceNo: Swift.String = "", secureTokenHash: Swift.String = "", aggregatorID: Swift.String = "", customerID: Swift.String = "", customerUPIAlias: Swift.String = "")
+  @objc public func encode(with coder: Foundation.NSCoder)
+  #if compiler(>=5.3) && $NonescapableTypes
+  @objc required public init?(coder: Foundation.NSCoder)
+  #endif
+  @objc deinit
+  public func encode(to encoder: any Swift.Encoder) throws
+  required public init(from decoder: any Swift.Decoder) throws
+}
+public struct ServiceChargeResponse : Swift.Codable {
+  public let respHeader: customersdk.RespHeader?
+  public let respBody: customersdk.ServiceChargeRespBody?
+  public func encode(to encoder: any Swift.Encoder) throws
+  public init(from decoder: any Swift.Decoder) throws
+}
+public struct RespHeader : Swift.Codable {
+  public let responseCode: Swift.String?
+  public let respDescription: Swift.String?
+  public func encode(to encoder: any Swift.Encoder) throws
+  public init(from decoder: any Swift.Decoder) throws
+}
+public struct ServiceChargeRespBody : Swift.Codable {
+  public let amount: Swift.String?
+  public let serviceCharge: Swift.String?
+  public let merchantID: Swift.String?
+  public func encode(to encoder: any Swift.Encoder) throws
+  public init(from decoder: any Swift.Decoder) throws
+}
+public struct ServiceCharge : Swift.Codable {
+  public func encode(to encoder: any Swift.Encoder) throws
+  public init(from decoder: any Swift.Decoder) throws
+}
+public struct TransactionStatusResp : Swift.Codable {
+  public let txnId: Swift.String?
+  public let responseCode: Swift.String?
+  public let merchantId: Swift.String?
+  public let merchantTxnNo: Swift.String?
+  public let txnStatus: Swift.String?
+  public let paymentDateTime: Swift.String?
+  public let paymentID: Swift.String?
+  public let txnAuthId: Swift.String?
+  public let respDescription: Swift.String?
+  public let txnRespDescription: Swift.String?
+  public func encode(to encoder: any Swift.Encoder) throws
+  public init(from decoder: any Swift.Decoder) throws
+}
+public struct UpiRequest : Swift.Codable {
+  public func encode(to encoder: any Swift.Encoder) throws
+  public init(from decoder: any Swift.Decoder) throws
+}
+@_hasMissingDesignatedInitializers public class HmacUtility {
+  #if compiler(>=5.3) && $NonescapableTypes
+  public static func generateHMAC(message: Swift.String, secretKey: Swift.String) -> Swift.String?
+  #endif
+  #if compiler(>=5.3) && $NonescapableTypes
+  public static func generateSHA(message: Swift.String) -> Swift.String?
+  #endif
+  public static func bytesToHex(_ bytes: [Swift.UInt8]) -> Swift.String
+  #if compiler(>=5.3) && $NonescapableTypes
+  public static func prepareSecureHash(secureToken: Swift.String, paramsMap: [Swift.String : Swift.String]) -> Swift.String?
+  #endif
+  #if compiler(>=5.3) && $NonescapableTypes
+  public static func prepareSecureHashVPA(secureToken: Swift.String, paramsMap: [Swift.String : Swift.String]) -> Swift.String?
+  #endif
+  #if compiler(>=5.3) && $NonescapableTypes
+  public static func toDictionary(jsonString: Swift.String) -> [Swift.String : Any]?
+  #endif
+  #if compiler(>=5.3) && $NonescapableTypes
+  public static func toList(jsonArrayString: Swift.String) -> [Any]?
+  #endif
+  @objc deinit
+}
+public protocol BaseTableAdapterDelegate : AnyObject {
+  func onItemClick<T>(_ item: T, at position: Swift.Int)
+}
+@_Concurrency.MainActor @preconcurrency open class BaseTableAdapter<T, Cell> : ObjectiveC.NSObject, UIKit.UITableViewDataSource, UIKit.UITableViewDelegate where Cell : UIKit.UITableViewCell {
+  @_Concurrency.MainActor @preconcurrency public var items: [T]
+  @_Concurrency.MainActor @preconcurrency weak public var delegate: (any customersdk.BaseTableAdapterDelegate)?
+  @_Concurrency.MainActor @preconcurrency public init(items: [T] = [])
+  @_Concurrency.MainActor @preconcurrency @objc public func tableView(_ tableView: UIKit.UITableView, numberOfRowsInSection section: Swift.Int) -> Swift.Int
+  @_Concurrency.MainActor @preconcurrency @objc public func tableView(_ tableView: UIKit.UITableView, cellForRowAt indexPath: Foundation.IndexPath) -> UIKit.UITableViewCell
+  @_Concurrency.MainActor @preconcurrency @objc public func tableView(_ tableView: UIKit.UITableView, didSelectRowAt indexPath: Foundation.IndexPath)
+  @_Concurrency.MainActor @preconcurrency open func configureCell(_ cell: Cell, with item: T, at index: Swift.Int)
+  #if compiler(>=5.3) && $NonescapableTypes
+  @_Concurrency.MainActor @preconcurrency public func addItem(_ item: T, at position: Swift.Int? = nil)
+  #endif
+  #if compiler(>=5.3) && $NonescapableTypes
+  @_Concurrency.MainActor @preconcurrency public func addItems(_ newItems: [T], at position: Swift.Int? = nil)
+  #endif
+  @_Concurrency.MainActor @preconcurrency public func removeItem(at position: Swift.Int)
+  @_Concurrency.MainActor @preconcurrency public func clearItems()
+  @objc deinit
+}
+@_hasMissingDesignatedInitializers public class APISetting {
+  public static var baseUrl: Swift.String?
+  public static var saleBaseUrl: Swift.String?
+  public static func getBaseUrl() throws -> Swift.String
+  public static func getSaleBaseUrl() throws -> Swift.String
+  public static var loginUrl: Swift.String {
+    get
+  }
+  public static var paymentOptUrl: Swift.String {
+    get
+  }
+  public static var returnUrl: Swift.String {
+    get
+  }
+  public static var formActionUrl: Swift.String {
+    get
+  }
+  public static var getGenerateQr: Swift.String {
+    get
+  }
+  public static var checkPaymentStatus: Swift.String {
+    get
+  }
+  public static var serviceChargesContextPath: Swift.String {
+    get
+  }
+  public static func getGetServiceCharges() -> Swift.String
+  @objc deinit
+}
+public struct TransactionStatus : Swift.Codable {
+  public func encode(to encoder: any Swift.Encoder) throws
+  public init(from decoder: any Swift.Decoder) throws
+}
+@_hasMissingDesignatedInitializers public class ApplicationRepository {
+  public static let shared: customersdk.ApplicationRepository
+  public var userId: Swift.String
+  public var paymentOptScope: Swift.String
+  public var responseStatus: Swift.Int?
+  final public let QA: Swift.String
+  final public let PROD: Swift.String
+  #if compiler(>=5.3) && $NonescapableTypes
+  public func appInfo(mid: Swift.String, appId: Swift.String, completion: @escaping (Swift.Result<Swift.String, any Swift.Error>) -> Swift.Void)
+  #endif
+  #if compiler(>=5.3) && $NonescapableTypes
+  public func getPaymentOptions(mid: Swift.String, completion: @escaping (Swift.Result<Swift.String, any Swift.Error>) -> Swift.Void)
+  #endif
+  public func setEnv(type: Swift.String)
+  #if compiler(>=5.3) && $NonescapableTypes
+  public func setMerchantName(name: Swift.String?)
+  #endif
+  public func parseOptionData(data: Swift.String)
+  @objc deinit
+}
+public struct VpaPaymentResponse : Swift.Codable {
+  public let amount: Swift.String?
+  public let isBEPGEnabled: Swift.Bool?
+  public let merchantId: Swift.String?
+  public let merchantTxnNo: Swift.String?
+  public let paymentDateTime: Swift.String?
+  public let paymentMode: Swift.String?
+  public let respDescription: Swift.String?
+  public let responseCode: Swift.String?
+  public let secureHash: Swift.String?
+  public let txnID: Swift.String?
+  public init()
+  public init(from decoder: any Swift.Decoder) throws
+  public func encode(to encoder: any Swift.Encoder) throws
+}
+@_hasMissingDesignatedInitializers public class PayForm {
+  public static let VALUE: Swift.String
+  public static func getPayFormHtml(secureToken: Swift.String, paramsMap: [Swift.String : Swift.String], apiVersion: Swift.String) -> Swift.String
+  @objc deinit
+}
+extension customersdk.Message : Swift.Equatable {}
+extension customersdk.Message : Swift.Hashable {}
+extension customersdk.Message : Swift.RawRepresentable {}
+extension customersdk.EmojiFilter : Swift.Sendable {}
+extension customersdk.BaseTableAdapter : Swift.Sendable {}
