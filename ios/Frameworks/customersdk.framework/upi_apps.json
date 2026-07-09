@@ -1,0 +1,27 @@
+    [
+      {
+        "name": "Google Pay",
+        "scheme": "tez://",
+        "icon": "gpay"
+      },
+      {
+        "name": "PhonePe",
+        "scheme": "phonepe://",
+        "icon": "phonepay"
+      },
+      {
+        "name": "Paytm",
+        "scheme": "paytm://",
+        "icon": "paytmpay"
+      },
+      {
+        "name": "Amazon Pay",
+        "scheme": "amazonpay://",
+        "icon": "amazonpay"
+      },
+      {
+        "name": "BHIM",
+        "scheme": "bhim://",
+        "icon": "bhimpay"
+      }
+    ]
